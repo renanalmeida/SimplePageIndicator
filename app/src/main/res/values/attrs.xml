@@ -1,0 +1,15 @@
+<resources>
+    <declare-styleable name="Indicator">
+        <attr name="indicatorColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="PageViewIndicator">
+        <attr name="indicatorPrimaryColor" format="color" />
+        <attr name="indicatorSecondaryColor" format="color" />
+        <attr name="indicatorWidth" format="dimension" />
+        <attr name="indicatorHeight" format="dimension" />
+        <attr name="pageQuantity" format="integer" />
+    </declare-styleable>
+</resources>
+
+
