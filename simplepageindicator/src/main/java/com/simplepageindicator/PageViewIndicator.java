@@ -20,6 +20,7 @@ public class PageViewIndicator extends LinearLayout {
     private int indicadorWidth = 0;
     private int indicadorHeight = 0;
     private Context mContext;
+    private boolean overflowMode = false;
 
     public PageViewIndicator(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -35,6 +36,7 @@ public class PageViewIndicator extends LinearLayout {
             this.indicadorWidth = a.getDimensionPixelSize(R.styleable.PageViewIndicator_indicatorWidth, 5);
             this.indicadorHeight = a.getDimensionPixelSize(R.styleable.PageViewIndicator_indicatorHeight, 5);
             this.pageQuantity = a.getInteger(R.styleable.PageViewIndicator_pageQuantity, 1);
+            this.overflowMode = a.getBoolean(R.styleable.PageViewIndicator_overflowMode, false);
             layoutWidthAdjust();
         } finally {
             a.recycle();
@@ -43,10 +45,10 @@ public class PageViewIndicator extends LinearLayout {
     }
 
     private void layoutWidthAdjust() {
-        int width =  mContext.getResources().getDisplayMetrics().widthPixels;
-        if((indicadorWidth * pageQuantity) >= width){
-            this.indicadorWidth = width / pageQuantity ;
-            this.indicadorHeight = width / pageQuantity ;
+        int width = mContext.getResources().getDisplayMetrics().widthPixels;
+        if ((indicadorWidth * pageQuantity) >= width) {
+            this.indicadorWidth = width / pageQuantity;
+            this.indicadorHeight = width / pageQuantity;
         }
     }
 
@@ -54,31 +56,29 @@ public class PageViewIndicator extends LinearLayout {
         return currentPage;
     }
 
-    public void nextPage(){
+    public void nextPage() {
         clearPageIndicator(currentPage);
-        if(currentPage < pageQuantity -1)
-            currentPage++;
-        else currentPage = 0;
+        if (currentPage < pageQuantity - 1) currentPage++;
+        else if (overflowMode) currentPage = 0;
         setCurrentPage(currentPage);
     }
 
     public void previousPage() {
         clearPageIndicator(currentPage);
-        if(currentPage > 0)
-            currentPage--;
-        else currentPage = pageQuantity -1;
+        if (currentPage > 0) currentPage --;
+        else if (overflowMode) currentPage = pageQuantity - 1;
         setCurrentPage(currentPage);
     }
 
     public void setCurrentPage(int currentPage) {
-        if(currentPage >= pageQuantity || currentPage < 0 ) return;
+        if (currentPage >= pageQuantity || currentPage < 0) return;
         ViewGroup mViewGroup = this;
         this.currentPage = currentPage;
-        Indicator  indicator = (Indicator) mViewGroup.getChildAt(currentPage);
+        Indicator indicator = (Indicator) mViewGroup.getChildAt(currentPage);
         indicator.setCircleColor(primaryColor);
     }
 
-    public void clearPageIndicator(int currentPage){
+    public void clearPageIndicator(int currentPage) {
         ViewGroup mViewGroup = this;
         Indicator indicator = (Indicator) mViewGroup.getChildAt(this.currentPage);
         indicator.setCircleColor(secondaryColor);
@@ -86,17 +86,18 @@ public class PageViewIndicator extends LinearLayout {
 
     public void setPageQuantity(int quantity) {
         ViewGroup mViewGroup = this;
+        mViewGroup.removeAllViews();
         this.pageQuantity = quantity;
+        layoutWidthAdjust();
         for (int i = 0; i < this.pageQuantity; i++) {
             Log.wtf("PageViewIndicator", "addView !!!");
             Indicator indicator = new Indicator(getContext());
             indicator.setLayoutParams(new LayoutParams(indicadorWidth, indicadorHeight));
-            if (currentPage == i) {
+            if (this.currentPage == i) {
                 indicator.setCircleColor(primaryColor);
             } else {
                 indicator.setCircleColor(secondaryColor);
             }
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             mViewGroup.addView(indicator, i);
         }
     }

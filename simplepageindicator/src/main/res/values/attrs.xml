@@ -9,6 +9,8 @@
         <attr name="indicatorWidth" format="dimension" />
         <attr name="indicatorHeight" format="dimension" />
         <attr name="pageQuantity" format="integer" />
+        <attr name="overflowMode" format="boolean" />
+        <attr name="indicator" format="" />
     </declare-styleable>
 </resources>
 
