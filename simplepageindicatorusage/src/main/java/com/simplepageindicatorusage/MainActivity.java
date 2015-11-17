@@ -23,15 +23,21 @@ public class MainActivity extends AppCompatActivity {
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pageViewIndicator.previousPage();
+                pageViewIndicator.setPageQuantity(10);
+                pageViewIndicator.setCurrentPage(3);
             }
         });
 
         Button right = (Button)findViewById(R.id.bt_right);
-        right.setOnClickListener(new View.OnClickListener() {
+
+        right.setOnClickListener(
+
+                new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pageViewIndicator.nextPage();
+                pageViewIndicator.setPageQuantity(10);
+
+                pageViewIndicator.setCurrentPage(7);
             }
         });
     }

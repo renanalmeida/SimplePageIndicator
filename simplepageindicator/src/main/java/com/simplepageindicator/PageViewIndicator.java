@@ -3,11 +3,9 @@ package com.simplepageindicator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-
 /**
  * Created by renan on 12/11/15.
  */
@@ -57,20 +55,21 @@ public class PageViewIndicator extends LinearLayout {
     }
 
     public void nextPage() {
-        clearPageIndicator(currentPage);
+        clearPageIndicator();
         if (currentPage < pageQuantity - 1) currentPage++;
         else if (overflowMode) currentPage = 0;
         setCurrentPage(currentPage);
     }
 
     public void previousPage() {
-        clearPageIndicator(currentPage);
+        clearPageIndicator();
         if (currentPage > 0) currentPage --;
         else if (overflowMode) currentPage = pageQuantity - 1;
         setCurrentPage(currentPage);
     }
 
     public void setCurrentPage(int currentPage) {
+        clearPageIndicator();
         if (currentPage >= pageQuantity || currentPage < 0) return;
         ViewGroup mViewGroup = this;
         this.currentPage = currentPage;
@@ -78,7 +77,7 @@ public class PageViewIndicator extends LinearLayout {
         indicator.setCircleColor(primaryColor);
     }
 
-    public void clearPageIndicator(int currentPage) {
+    public void clearPageIndicator() {
         ViewGroup mViewGroup = this;
         Indicator indicator = (Indicator) mViewGroup.getChildAt(this.currentPage);
         indicator.setCircleColor(secondaryColor);
@@ -90,16 +89,12 @@ public class PageViewIndicator extends LinearLayout {
         this.pageQuantity = quantity;
         layoutWidthAdjust();
         for (int i = 0; i < this.pageQuantity; i++) {
-            Log.wtf("PageViewIndicator", "addView !!!");
             Indicator indicator = new Indicator(getContext());
             indicator.setLayoutParams(new LayoutParams(indicadorWidth, indicadorHeight));
-            if (this.currentPage == i) {
-                indicator.setCircleColor(primaryColor);
-            } else {
-                indicator.setCircleColor(secondaryColor);
-            }
+            indicator.setCircleColor(secondaryColor);
             mViewGroup.addView(indicator, i);
         }
+        setCurrentPage(getCurrentPage());
     }
 
 }
