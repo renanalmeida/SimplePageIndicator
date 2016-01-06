@@ -17,29 +17,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        pageViewIndicator = (PageViewIndicator)findViewById(R.id.pageViewIndicator);
-         pageViewIndicator.setPageQuantity(10);
-        Button left = (Button)findViewById(R.id.bt_left);
+        pageViewIndicator = (PageViewIndicator) findViewById(R.id.pageViewIndicator);
+        pageViewIndicator.setPageQuantity(10);
+        Button left = (Button) findViewById(R.id.bt_left);
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pageViewIndicator.setPageQuantity(10);
-                pageViewIndicator.setCurrentPage(3);
+                pageViewIndicator.previousPage();
             }
         });
 
-        Button right = (Button)findViewById(R.id.bt_right);
-
+        Button right = (Button) findViewById(R.id.bt_right);
         right.setOnClickListener(
-
                 new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pageViewIndicator.setPageQuantity(10);
-
-                pageViewIndicator.setCurrentPage(7);
-            }
-        });
+                    @Override
+                    public void onClick(View v) {
+                        pageViewIndicator.nextPage();
+                    }
+                });
     }
 
     @Override
@@ -55,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;

@@ -46,12 +46,6 @@ public class Indicator extends View {
         super.onDraw(canvas);
         int viewWidthHalf = this.getMeasuredWidth()/2;
         int viewHeightHalf = this.getMeasuredHeight()/2;
-        Log.wtf("viewWidthHalf:", String.valueOf(this.getMeasuredWidth() / 2));
-        Log.wtf("viewWidthHalf:", String.valueOf(this.getMeasuredHeight() / 2));
-
-
-        Log.wtf("viewWidthHalf:", String.valueOf(this.getMeasuredHeight() / 2));
-
         circlePaint.setStyle(Style.FILL);
         circlePaint.setAntiAlias(true);
         //set the paint color using the circle color specified
