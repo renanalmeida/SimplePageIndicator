@@ -1,1 +1,1 @@
-include ':simplepageindicator', ':simplepageindicatorusage'
+include ':simplepageindicator', ':app'

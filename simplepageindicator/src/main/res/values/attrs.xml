@@ -8,7 +8,7 @@
         <attr name="indicatorSecondaryColor" format="color" />
         <attr name="indicatorWidth" format="dimension" />
         <attr name="indicatorHeight" format="dimension" />
-        <attr name="pageQuantity" format="integer" />
+        <attr name="pageNumber" format="integer" />
         <attr name="overflowMode" format="boolean" />
     </declare-styleable>
 </resources>

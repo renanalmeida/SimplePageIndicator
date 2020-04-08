@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/bt_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:text="left" />
+
+    <Button
+        android:id="@+id/bt_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="right" />
+
+    <com.github.simplepageindicator.PageViewIndicator
+        android:id="@+id/pageViewIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/bt_right"
+        android:layout_alignParentBottom="true"
+        app:overflowMode="false"
+        app:indicatorHeight="30dp"
+        app:indicatorPrimaryColor="@android:color/holo_blue_dark"
+        app:indicatorSecondaryColor="@android:color/holo_green_light"
+        app:indicatorWidth="30dp"/>
+
+</RelativeLayout>
