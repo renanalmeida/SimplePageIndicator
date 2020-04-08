@@ -47,7 +47,7 @@ class Indicator : View {
         )
     }
 
-    fun setCircleColor(newColor: Int) { //update the instance variable
+    fun setCircleColor(newColor: Int) {
         indicatorColor = newColor
         invalidate()
         requestLayout()
